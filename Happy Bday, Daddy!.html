@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 47th Birthday, Daddy!</title>
+    <link rel="stylesheet" href="birthday - story.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f5f5dc;
+            padding: 20px;
+            margin: 0;
+        }
+
+        h1 {
+            color: #d2691e;
+        }
+
+        h3 {
+            font-size: 22px;
+            color: #5A3E2B;
+        }
+
+        #story {
+            width: 60%;
+            max-width: 500px;
+            min-width: 300px;
+            margin: auto;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px gray;
+        }
+
+        button {
+            background-color: #ff8c00;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #e07b00;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            #story {
+                width: 90%;
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 22px;
+            }
+
+            button {
+                font-size: 14px;
+                padding: 8px 12px;
+            }
+
+            .popup-content {
+                max-width: 90%;
+                padding: 15px;
+            }
+        }
+
+        /* Popup Styling */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 300px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .popup-content button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎉 Choose Your Birthday Adventure! 🎂</h1>
+    <div id="story">
+        <h3>It's your special day! What would you like to do first?</h3>
+        <button onclick="chooseAdventure('wakeUp')">Wake Up & Greet Family ☀️</button>
+        <button onclick="chooseAdventure('cakeOrParty')">Plan Your Celebration 🎈</button>
+    </div>
+
+    <!-- Hidden Birthday Wish -->
+    <button id="giftButton" onclick="revealWish()">🎁</button>
+
+<div id="popup" class="popup" style="display: none;">
+    <div class="popup-content">
+        <h2 style="font-size: 20px;">🎁 Surprise Gift from Onni! 🎉</h2>
+        <p>Happy Birthday, daddy!🥳🥳 I love you so much and I hope you have the best day today! I also hope to spend many more birthdays with you even if we're not together at home❤️</p>
+        <button onclick="closePopup()">~Continue~</button>
+    </div>
+</div>
+
+
+    <!-- Family Photo Upload (Only at the End) -->
+    <div id="photoUpload" style="display: none; margin-top: 20px;">
+        <h2>📸 Take a Lovely Family Photo!</h2>
+        <input type="file" id="imageInput" accept="image/*" onchange="displayImage(event)">
+        <div id="photoFrame" style="margin-top: 10px;"></div>
+    </div>
+
+    <script>
+        function chooseAdventure(choice) {
+    let storyDiv = document.getElementById("story");
+
+    if (choice === "wakeUp") {
+        storyDiv.innerHTML = `
+            <h3>You wake up to the sound of your family saying, "Happy Birthday!"🎉</h3>
+            <img src="bday 3.jpg" alt="Family greeting in the morning" width="300"><br>
+            <button onclick="chooseAdventure('breakfast')">Have Breakfast Together🍳</button>
+            <button onclick="chooseAdventure('checkPhone')">Check Your Phone📱</button>
+        `;
+    } else if (choice === "cakeOrParty") {  
+        storyDiv.innerHTML = `
+            <h3>How would you like to celebrate today?</h3>
+            <button onclick="chooseAdventure('cake')">Eat Cake First🍰</button>
+            <button onclick="chooseAdventure('party')">Throw a Party🎉</button>
+        `;
+    } else if (choice === "cake") {
+        storyDiv.innerHTML = `
+            <h3>You enjoy a delicious slice of your birthday cake.🎂</h3>
+            <img src="bday 2.jpg" alt="Eating birthday cake" width="300"><br>
+            <button onclick="chooseAdventure('cakeCelebrate')">Celebrate with Family🎊</button>
+        `;
+    } else if (choice === "cakeCelebrate") {
+        storyDiv.innerHTML = `
+            <h3>After cake, you celebrate with your family, spending the quality time you akways love❤️</h3>
+            <img src="bday 4.jpg" alt="Family celebrating" width="300"><br>
+            <button onclick="chooseAdventure('photo')">Take a Family Photo 📸</button>
+        `;
+    } else if (choice === "party") {
+        storyDiv.innerHTML = `
+            <h3>You have a fantastic birthday party! Friends and family gather and the atmosphere is full of joy.🎈</h3>
+            <img src="bday 17.jpg" alt="Birthday party celebration" width="300"><br>
+            <button onclick="chooseAdventure('groupPhoto')">Take a Group Picture📸</button>
+        `;
+    } else if (choice === "groupPhoto") {
+        storyDiv.innerHTML = `
+            <h3>Everyone gathers for a big group photo, capturing this special moment forever.📷</h3>
+            <img src="bday.jpg" alt="Group photo at the party" width="300"><br>
+            <button onclick="chooseAdventure('goodnight')">Say Good Night to Family🌙</button>
+        `;
+    } else if (choice === "checkPhone") {
+        storyDiv.innerHTML = `
+            <h3>You check your phone and see countless birthday messages from friends and family. Your heart feels warm.❤️</h3>
+            <img src="bday 0.png" alt="Birthday messages on phone" width="300"><br>
+            <button onclick="chooseAdventure('breakfast')">Join Family for Breakfast🍳</button>
+        `;
+    } else if (choice === "breakfast") {
+        storyDiv.innerHTML = `
+            <h3>You sit at the table with your family, enjoying a delicious birthday breakfast together.🥞☕</h3>
+            <img src="bday 12.jpg" alt="Family eating breakfast" width="300"><br>
+            <button onclick="chooseAdventure('gifts')">Open Letters & Gifts🎁</button>
+        `;
+    } else if (choice === "gifts") {
+        storyDiv.innerHTML = `
+            <h3>Your daughters (samot si elle, except ni ate) excitedly hand you handmade cards and gifts.❤️</h3>
+            <img src="bday 11.jpg" alt="Kids giving gifts" width="300"><br>
+            <button onclick="chooseAdventure('qualityTime')">Spend Family Time🎠</button>
+        `;
+    } else if (choice === "qualityTime") {
+        storyDiv.innerHTML = `
+            <h3>You spend the day doing your favorite activities with your family—maybe a fun game or just relaxing together. 🏞️</h3>
+            <img src="bday 10.jpg" alt="Family playing together" width="300"><br>
+            <button onclick="chooseAdventure('restaurant')">Go to Your Favorite Restaurant🍽️</button>
+        `;
+    } else if (choice === "restaurant") {
+        storyDiv.innerHTML = `
+            <h3>You all go out to your favorite restaurant, eating our favorite dishes, and sharing laughter and delicious food.🍕🍛</h3>
+            <img src="bday 13.jpg" alt="Family dining together" width="300"><br>
+            <button onclick="chooseAdventure('photo')">Take a Family Photo 📸</button>
+        `;
+    } else if (choice === "photo") {
+        storyDiv.innerHTML = `
+            <h3>You take a beautiful family photo together, capturing this special moment forever.📷</h3>
+            <img src="bday 5.jpg" alt="Family taking a photo" width="300"><br>
+            <button onclick="chooseAdventure('goodnight')">Say Good Night to Family🌙</button>
+        `;
+        document.getElementById("photoUpload").style.display = "block";
+    } else if (choice === "goodnight") {
+        storyDiv.innerHTML = `
+            <h3>You say goodnight to your family, feeling grateful for this amazing day.💤</h3>
+            <img src="bday 14.jpg" alt="Family saying goodnight" width="300"><br>
+            <button onclick="chooseAdventure('sleep')">Go to Sleep😴</button>
+        `;
+    } else if (choice === "sleep") {
+        storyDiv.innerHTML = `
+            <h3>You fall asleep with a smile, knowing that so many people love and appreciate you on your 47th birthday!🎂💖</h3>
+            <img src="bday 15.jpg" alt="Sleeping peacefully" width="300">
+            <br><br>
+            <i style="font-size: 25px;">The End. 😊</i>
+        `;
+    }
+}
+
+// ✅ Birthday Wish Popup
+function revealWish() {
+            document.getElementById("popup").style.display = "flex";
+        }
+        function closePopup() {
+            document.getElementById("popup").style.display = "none";
+        }
+
+// ✅ Display Uploaded Photo
+function displayImage(event) {
+    let reader = new FileReader();
+    reader.onload = function() {
+        let imgElement = document.createElement("img");
+        imgElement.src = reader.result;
+        imgElement.style.width = "300px";
+        imgElement.style.border = "5px solid gold";
+        
+        let caption = document.createElement("p");
+        caption.textContent = "🖼️ A Beautiful Birthday Memory! 🖼️";
+        caption.style.fontStyle = "italic";
+        caption.style.color = "darkgoldenrod";
+        caption.style.textAlign = "center";
+
+        let photoFrame = document.getElementById("photoFrame");
+        photoFrame.innerHTML = "";
+        photoFrame.appendChild(imgElement);
+        photoFrame.appendChild(caption);
+    };
+    reader.readAsDataURL(event.target.files[0]);
+}
+    </script>
+</body>
+</html>
